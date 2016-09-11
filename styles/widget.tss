@@ -1,0 +1,107 @@
+".DHalertMask": {
+  backgroundColor: "#CC000000",
+  visible: false
+}
+
+/*
+*/
+"#alertBG": {
+  backgroundColor: '#e1e1e1'
+  , width: '90%'
+  , height: Ti.UI.SIZE
+  , layout: 'vertical'
+}
+
+/*
+*/
+"#image": {
+  top: 20
+  , width: 60
+  , height: 71
+}
+
+/*
+*/
+"#icon": {
+  top: 20
+  , color: Alloy.CFG.style.widget.icon
+  , font: { fontSize: 40 }
+}
+
+/*
+*/
+"#message": {
+  font: { fontSize: Alloy.CFG.style.fontRegular, fontSize: 16 }
+  , top: 20
+  , color: '#777777'
+  , textAlign: 'center'
+  , width: '90%'
+  , height: Ti.UI.SIZE
+  , text: 'Template'
+}
+
+/*
+*/
+"#viewBtns":{
+  top: 60
+  , bottom: 20
+  , height: 30
+  , width: '100%'
+}
+
+/*
+*/
+".localBtns":{
+  backgroundColor: Alloy.CFG.style.widget.buttonBG
+  , borderRadius: 5
+  , color: '#f4f4f4'
+  , font: { fontFamily: Alloy.CFG.style.fontLight, fontSize: 14 }
+  , height: 30
+  , width: '45%'
+  , left: '30%'
+}
+
+/*
+*/
+".localLeftBtn":{
+  width: '40%'
+  , left: '8%'
+  , backgroundColor: '#b5b5b5'
+}
+
+/*
+*/
+".localRightBtn":{
+  width: '40%'
+  , right: '8%'
+  , left: null
+}
+
+/*
+*/
+"#viewInput": {
+  top: 20
+  , width: '90%'
+  , height: Ti.UI.SIZE
+}
+
+/*
+*/
+"#inputField": {
+  color: Alloy.CFG.style.fontColor2
+  , left: '5%'
+  , right: '5%'
+	, textAlign: 'center'
+	, hintTextColor: Alloy.CFG.style.textFieldHintColor
+	, font: { fontSize: 16, fontFamily: Alloy.CFG.style.fontBold }
+	, bottom: '5%'
+  , height: Ti.UI.SIZE
+}
+
+/*
+*/
+".separator": {
+  backgroundColor: '#b5b5b5'
+  , height: 1
+  , bottom: 0
+}

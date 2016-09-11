@@ -1,0 +1,21 @@
+<Alloy>
+  <ListView class='DHpicker' id='DHpicker' onItemclick='touchItem' defaultItemTemplate='oneValue'>
+    <Templates>
+      <!-- One Value -->
+      <ItemTemplate name='oneValue' class='classList'>
+        <View bindId='toggle' id='DHpickerToggleView' class='DHpickerToggleView'/>
+        <Label bindId='title' class='DHpickerLabel' id='DHpickerLabel'/>
+        <View class='separator'/>
+      </ItemTemplate>
+
+      <!-- Double Value -->
+      <ItemTemplate name='doubleValue' class='classList'>
+        <View bindId='toggle' id='DHpickerToggleView' class='DHpickerToggleView'/>
+        <Label bindId='title' class='DHpickerLabel2' id='DHpickerLabel2'/>
+        <Label bindId='title2' class='DHpickerLabel3' id='DHpickerLabel3'/>
+      </ItemTemplate>
+    </Templates>
+
+    <ListSection id='section'/>
+  </ListView>
+</Alloy>

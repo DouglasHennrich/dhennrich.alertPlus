@@ -1,0 +1,26 @@
+<Alloy>
+  <View id="DHalertMask" class="DHalertMask">
+    <View id='alertBG'>
+      <!-- Image -->
+      <View if='$.args.image' id='image'/>
+
+      <!-- Icon -->
+      <Label if='$.args.icon' id='icon'/>
+
+      <!-- Message -->
+      <Label if='$.args.message' id='message'/>
+
+      <!-- TextField -->
+      <View if='$.args.input' id='viewInput'>
+        <TextField id='inputField' onFocus='fixFocus'/>
+        <View class='separator'/>
+      </View>
+
+      <!-- Picker -->
+      <Widget if='$.args.picker' name='picker' id='picker'/>
+
+      <!-- viewBtns -->
+      <View id='viewBtns'/>
+    </View>
+  </View>
+</Alloy>

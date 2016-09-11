@@ -1,0 +1,67 @@
+/*
+*/
+".DHpicker":{
+  top: 10
+  , height: Ti.UI.SIZE
+  , separatorColor: "transparent"
+  , backgroundColor: 'transparent'
+}
+
+/*
+*/
+".classList":{
+  height: 45
+  , backgroundColor: 'transparent'
+}
+".classList[platform=ios]":{
+  selectionStyle: Titanium.UI.iPhone.ListViewCellSelectionStyle.NONE
+}
+
+/*
+*/
+".DHpickerToggleView": {
+  backgroundColor: '#99BE0000'
+  /*, zIndex: 1*/
+  , visible: false
+}
+
+/*
+*/
+".DHpickerLabel": {
+  color: '#000000'
+  , font: { fontSize: 16, fontFamily: "OpenSans" }
+  , left: "5%"
+  , right: "5%"
+  , height: 30
+  , textAlign: "center"
+}
+
+/*
+*/
+".DHpickerLabel2": {
+  color: '#000000'
+  , font: { fontSize: 16, fontFamily: "OpenSans" }
+  , left: "5%"
+  , width: '45%'
+  , height: 30
+  , textAlign: "right"
+}
+
+/*
+*/
+".DHpickerLabel3": {
+  color: '#000000'
+  , font: { fontSize: 16, fontFamily: "OpenSans" }
+  , right: "5%"
+  , width: '45%'
+  , height: 30
+  , textAlign: "left"
+}
+
+/*
+*/
+".separator": {
+  bottom: 0
+  , height: 1
+  , backgroundColor: '#d6d6d6'
+}
