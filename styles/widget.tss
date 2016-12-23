@@ -1,3 +1,8 @@
+/* ===============================
+@ Classes
+=============================== */
+/*
+*/
 ".DHalertMask": {
   backgroundColor: "#CC000000",
   visible: false
@@ -5,8 +10,47 @@
 
 /*
 */
+".localBtns":{
+  backgroundColor: Alloy.CFG.style.widget.buttonColor
+  , borderRadius: 5
+  , color: Alloy.CFG.style.widget.buttonLabel
+  , font: { fontFamily: Alloy.CFG.style.defaults.fontRegular, fontSize: 14 }
+  , height: 30
+  , width: '45%'
+  , left: '30%'
+}
+
+/*
+*/
+".localLeftBtn":{
+  width: '40%'
+  , left: '8%'
+  , backgroundColor: Alloy.CFG.style.widget.buttonColorCancel
+}
+
+/*
+*/
+".localRightBtn":{
+  width: '40%'
+  , right: '8%'
+  , left: null
+}
+
+/*
+*/
+".separator": {
+  backgroundColor: Alloy.CFG.style.widget.separator
+  , height: 1
+  , bottom: 0
+}
+
+/* ===============================
+@ IDs
+=============================== */
+/*
+*/
 "#alertBG": {
-  backgroundColor: '#e1e1e1'
+  backgroundColor: Alloy.CFG.style.widget.alertBG
   , width: '90%'
   , height: Ti.UI.SIZE
   , layout: 'vertical'
@@ -31,13 +75,15 @@
 /*
 */
 "#message": {
-  font: { fontSize: Alloy.CFG.style.fontRegular, fontSize: 16 }
+  font: { fontSize: Alloy.CFG.style.defaults.fontRegular, fontSize: 16 }
   , top: 20
-  , color: '#777777'
+  , color: Alloy.CFG.style.widget.message
   , textAlign: 'center'
   , width: '90%'
   , height: Ti.UI.SIZE
-  , text: 'Template'
+  , editable: false
+  , backgroundColor: 'transparent'
+  , value: 'Template'
 }
 
 /*
@@ -51,34 +97,6 @@
 
 /*
 */
-".localBtns":{
-  backgroundColor: Alloy.CFG.style.widget.buttonBG
-  , borderRadius: 5
-  , color: '#f4f4f4'
-  , font: { fontFamily: Alloy.CFG.style.fontLight, fontSize: 14 }
-  , height: 30
-  , width: '45%'
-  , left: '30%'
-}
-
-/*
-*/
-".localLeftBtn":{
-  width: '40%'
-  , left: '8%'
-  , backgroundColor: '#b5b5b5'
-}
-
-/*
-*/
-".localRightBtn":{
-  width: '40%'
-  , right: '8%'
-  , left: null
-}
-
-/*
-*/
 "#viewInput": {
   top: 20
   , width: '90%'
@@ -88,20 +106,12 @@
 /*
 */
 "#inputField": {
-  color: Alloy.CFG.style.fontColor2
+  color: Alloy.CFG.style.widget.inputColor
   , left: '5%'
   , right: '5%'
 	, textAlign: 'center'
-	, hintTextColor: Alloy.CFG.style.textFieldHintColor
-	, font: { fontSize: 16, fontFamily: Alloy.CFG.style.fontBold }
+	, hintTextColor: Alloy.CFG.style.widget.hintColor
+	, font: { fontSize: 16, fontFamily: Alloy.CFG.style.defaults.fontMedium }
 	, bottom: '5%'
   , height: Ti.UI.SIZE
-}
-
-/*
-*/
-".separator": {
-  backgroundColor: '#b5b5b5'
-  , height: 1
-  , bottom: 0
 }

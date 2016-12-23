@@ -11,6 +11,7 @@ function touchItem(event){
     , itemData = JSON.parse(item.properties.data)
     ;
 
+  $.trigger('selectedItem', itemData);
   selectedRow = itemData;
 
   $.section.getItems().forEach(function(current, index){
@@ -37,8 +38,7 @@ exports.populatePicker = function(data){
     , tempItem = []
     ;
 
-  json.forEach(function(item, index){
-    if(index === 0 ) selectedRow = item.data;
+  json.forEach(function(item){
     tempItem.push({
       properties:{
         data: JSON.stringify(item.data)
@@ -53,12 +53,6 @@ exports.populatePicker = function(data){
   });
 
   $.section.setItems(tempItem);
-
-
-  var currItem = $.section.getItemAt(0);
-  currItem.toggle.visible = true;
-  currItem.title.color = currItem.title.selectedColor;
-  $.section.updateItemAt(0, currItem);
 };
 
 /*
@@ -72,9 +66,6 @@ exports.show = function(){
 @ selectedItem
 */
 exports.selectedItem = function(){
-  console.log('- - - - - - - -');
-  console.log('selectedItem: ', JSON.stringify(selectedRow));
-  console.log('- - - - - - - -');
   return selectedRow;
 };
 
@@ -83,23 +74,4 @@ exports.selectedItem = function(){
 */
 exports.setPickerHeight = function(number){
   $.DHpicker.height = number;
-};
-
-/*
-@ scrollToItem
-*/
-exports.scrollDown = function(){
-  var index = $.section.getItems().length;
-
-  for(var i = 0; i < index; i++){
-    (function IIFE(curr){
-      _.delay(function(){
-        $.DHpicker.scrollToItem(0, curr, true);
-      }, 150 * curr);
-    })(i);
-  }
-
-  setTimeout(function(){
-    $.DHpicker.scrollToItem(0, 0, true);
-  }, index * 150 + 500);
 };

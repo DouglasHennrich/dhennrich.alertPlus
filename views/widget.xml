@@ -8,7 +8,7 @@
       <Label if='$.args.icon' id='icon'/>
 
       <!-- Message -->
-      <Label if='$.args.message' id='message'/>
+      <TextArea if='$.args.message' id='message'/>
 
       <!-- TextField -->
       <View if='$.args.input' id='viewInput'>

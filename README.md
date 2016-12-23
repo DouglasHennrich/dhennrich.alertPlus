@@ -15,119 +15,173 @@ This is a modified [nl.fokkezb.loading](https://github.com/FokkeZB/nl.fokkezb.lo
 ![.AlertImage](/assets/alertImage.jpg)
 
 
-### XML
+## Add an Backbone's event to trigger the alert easily.
 
-Add the widget below all your code.
+```js
+// Alloy.js
+var App = {};
+
+App.Events = _.extend({
+  Alert: alertFunctionHandler
+}, Backbone.Events);
+
+/*
+@ alertFunctionHandler
+*/
+function alertFunctionHandler(params, Window){
+
+  var setUpParams = {}
+    , options = {}
+    , alerta = Alloy.createWidget('dhennrich.alertPlus', {
+      icon: (params.icon) ? true : false
+      , image: (params.image) ? true : false
+      , message: (params.message) ? true : false
+      , picker: (params.picker) ? true : false
+      , input: (params.input || params.inputHint) ? true : false
+      , zIndex: 10
+    })
+    ;
+
+  Window.add(alerta.getView());
+
+  //
+  params.icon && (setUpParams.icon = params.icon);
+  params.image && (setUpParams.image = params.image);
+  params.picker && (setUpParams.picker = params.picker);
+  params.pickerHeight && (setUpParams.pickerHeight = params.pickerHeight);
+  params.inputHint && (setUpParams.inputHint = params.inputHint);
+
+  alerta.setUp(setUpParams);
+
+  //
+  if(params.cantExit){
+    Window.cantExit = true;
+  }
+
+  //
+  options.callback = function(res){
+    params.callback && params.callback(res);
+    Window.remove(alerta.getView());
+    Window.cantExit = false;
+  };
+
+  _.defaults(options, params);
+
+  alerta.show(options);
+
+}
+```
+
+## XML
+
 ```xml
 <Alloy>
-    <Window>
-        <View>
-            <Label id="Label">Something</Label>
-        </View>
-
-        <!-- Alert -->
-        <Widget src="dhennrich.alert" id="DHalert"/>
-    </Window>
+  <Window id='win'/>
 </Alloy>
 ```
 
-### JS
+## JS
 
-When you want to display an alert
+```js
+// Common usage
+App.Events.Alert({
+  message: 'Some Message'
+  , attrMsg: [ 'Message' ]
+  , btns: [ 'Cancel', 'Select' ]
+  , callback:function(res){
 
-```javascript
-$.DHalert.show('Something you want to say', ['Option 1', 'Option 2'], function(event){
-    // Hide and remove elements of alert
-    $.DHalert.hide();
-
-    switch(this.index){
-        case 0:
-            console.log('First button clicked');
-            // Do something when press "Option 1"
-            break;
-
-        case 1:
-            console.log('Second button clicked');
-            // Do something when press "Option 2"
-            break;
+    // res will be returned if you click on select button(second button)
+    if(res){
+      console.log('SELECTED');
     }
-});
+
+  }
+}, $.win);
 ```
 
-**IMPORTANT** The callback should be handled as `index` as above example
+### Picker Example
+```js
+var tempArr = _.map([
+    { something: 0, value: 'Picker' }
+    , { something: 1, value: 'Example' }
+  ], function(curr){
 
-### TSS
-You can customize your alert on `app.tss` file.
+    return {
+      style: 'oneValue'
+      , title: {
+        text: curr.value
+        , color: Alloy.CFG.style.widget.picker.unselected
+        , selectedColor: Alloy.CFG.style.widget.picker.selected
+        , unSelectedColor: Alloy.CFG.style.widget.picker.unselected
+        , font: { fontSize: 14, fontFamily: Alloy.CFG.style.fontSemiBold }
+      }
+      , data: curr
+    };
+  })
+  ;
 
-* `#DHalertMask` is the role background of the view.
+//
+App.Events.Alert({
+  message: 'Message'
+  , btns: { title: 'Back', backgroundColor: Alloy.CFG.style.widget.buttonColorCancel }
+  , callback:function(res){
 
-```css
+    if(res){
+
+      console.log(res.value);
+
+    }
+
+  }
+  , picker: tempArr
+  , pickerHeight: 80
+}, $.win);
+```
+
+### As you can see, you need to add some stylings on your `config.json`:
+
+```json
 {
-    backgroundColor: "#8000",
-    visible: false
+  "global":{
+
+    "style":{
+
+      "defaults":{
+
+        "fontLight": "Titillium-Light"
+        , "fontRegular": "Titillium-Regular"
+        , "fontMedium": "Titillium-Medium"
+        , "fontSemiBold": "Titillium-SemiBold"
+        , "fontBold": "Titillium-Bold"
+
+      }
+
+      , "widget":{
+
+        "alertBG":"#e1e1e1"
+        , "loadingBG": "#FF3F3F3F"
+        , "loadingMessage": "#BFBFBF"
+
+        , "icon": "#535353"
+        , "message": "#777777"
+        , "separator": "#363434"
+
+        , "buttonColor": "#535353"
+        , "buttonColorCancel": "#282828"
+        , "buttonLabel": "#fff"
+
+        , "picker":{
+
+          "toggle": "#99535353"
+          , "unselected": "#777777"
+          , "selected": "#fff"
+
+        }
+      }
+
+    }
+  }
+
+  ...
 }
 ```
-
-* `#DHalertOuter` is the background of alert.
-
-```css
-{
-    width: Ti.UI.SIZE,
-    height: Ti.UI.SIZE,
-
-    borderRadius: 10,
-    backgroundColor: "#F2248e21"
-}
-```
-
-* `#DHalertMessage` is the label that display our alert
-
-```css
-{
-    top: '0dp',
-    width: Ti.UI.SIZE,
-    height: Ti.UI.SIZE,
-
-    color: '#fff',
-    textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-    font: { fontSize: '20dp', fontFamily: 'Exo-Bold' }
-}
-```
-
-* `#DHalertSeparator` is the separator view between message and buttons
-
-```css
-{
-    top: '5dp',
-    height: '2dp',
-    width: '90%',
-    backgroundColor: "#FFBC00"
-}
-```
-
-* `#DHBtns` is the options buttons style
-
-```css
-{
-    backgroundColor: 'transparent'
-  , top: '20dp'
-  , height: Ti.UI.SIZE
-  , textAlign: 'center'
-  , color: 'red'
-  , font: { fontSize: 18, fontFamily: "Exo-Bold" }
-}
-```
-
-### Exposed Functions
-
-* show
-* hide
-
-
-$.`idWidget`.show( `alert message`, [ `array`, `buttons`, `names` ], `callback`);
-
-$.`idWidget`.hide();
-
-
-### Changelog
-* **0.0.2** - Add customization for Options Button

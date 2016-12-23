@@ -14,13 +14,13 @@
   , backgroundColor: 'transparent'
 }
 ".classList[platform=ios]":{
-  selectionStyle: Titanium.UI.iPhone.ListViewCellSelectionStyle.NONE
+  selectionStyle: Ti.UI.iOS.ListViewCellSelectionStyle.NONE
 }
 
 /*
 */
 ".DHpickerToggleView": {
-  backgroundColor: '#99BE0000'
+  backgroundColor: Alloy.CFG.style.widget.picker.toggle
   /*, zIndex: 1*/
   , visible: false
 }
